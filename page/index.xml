@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
-        <title>Pages on Null&#39;s 🫡</title>
+        <title>Pages on topanic&#39;s blog 🫡</title>
         <link>https://example.com/page/</link>
-        <description>Recent content in Pages on Null&#39;s 🫡</description>
+        <description>Recent content in Pages on topanic&#39;s blog 🫡</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
-        <copyright>Github:null-less. All rights reserved.</copyright>
+        <copyright>Github:topanic. All rights reserved.</copyright>
         <lastBuildDate>Tue, 28 May 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://example.com/page/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Archives</title>
         <link>https://example.com/archives/</link>
