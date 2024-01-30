@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Categories on Null&#39;s 🫡</title>
+        <link>https://example.com/categories/</link>
+        <description>Recent content in Categories on Null&#39;s 🫡</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en</language>
+        <copyright>Github:null-less. All rights reserved.</copyright>
+        <lastBuildDate>Sat, 27 Jan 2024 23:58:50 +0800</lastBuildDate><atom:link href="https://example.com/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Academic-Competition</title>
+        <link>https://example.com/categories/academic-competition/</link>
+        <pubDate>Sat, 27 Jan 2024 23:58:50 +0800</pubDate>
+        
+        <guid>https://example.com/categories/academic-competition/</guid>
+        <description>&lt;img src="https://example.com/categories/academic-competition/out-0.png" alt="Featured image of post Academic-Competition" /&gt;</description>
+        </item>
+        <item>
+        <title>Course-CS</title>
+        <link>https://example.com/categories/course-cs/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        
+        <guid>https://example.com/categories/course-cs/</guid>
+        <description>&lt;img src="https://example.com/categories/course-cs/out-0.png" alt="Featured image of post Course-CS" /&gt;</description>
+        </item>
+        <item>
+        <title>Test</title>
+        <link>https://example.com/categories/test/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        
+        <guid>https://example.com/categories/test/</guid>
+        <description>&lt;img src="https://example.com/categories/test/hutomo-abrianto-l2jk-uxb1BY-unsplash.jpg" alt="Featured image of post Test" /&gt;</description>
+        </item>
+        
+    </channel>
+</rss>

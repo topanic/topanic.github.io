@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='jetson nano板tensorrt等环境配置'>
+<title>Jetson Nano tips</title>
+
+<link rel='canonical' href='https://example.com/p/jetson-nano-tips/'>
+
+<link rel="stylesheet" href="/scss/style.min.39102a18223feb77ed2e08d5d8a63fcc1df789cc9a577c1f2111e8255ea3902d.css"><meta property='og:title' content='Jetson Nano tips'>
+<meta property='og:description' content='jetson nano板tensorrt等环境配置'>
+<meta property='og:url' content='https://example.com/p/jetson-nano-tips/'>
+<meta property='og:site_name' content='Null&#39;s 🫡'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Jetson Nano' /><meta property='article:tag' content='Nvidia' /><meta property='article:published_time' content='2024-01-27T23:58:50&#43;08:00'/><meta property='article:modified_time' content='2024-01-27T23:58:50&#43;08:00'/>
+<meta name="twitter:title" content="Jetson Nano tips">
+<meta name="twitter:description" content="jetson nano板tensorrt等环境配置">
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/linux_hu5289a5efabee4276a288c69c1183a3b6_17536_300x0_resize_q75_box.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Null&#39;s 🫡</a></h1>
+            <h2 class="site-description">More and more bits.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/CaiJimmy/hugo-theme-stack'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://stackoverflow.com/users/21073598/tsieyy'
+                        target="_blank"
+                        title="StackOverflow"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-stackoverflow" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 17v1a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-1" /><path d="M8 16h8" /><path d="M8.322 12.582l7.956 .836" /><path d="M8.787 9.168l7.826 1.664" /><path d="M10.096 5.764l7.608 2.472" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://outlook.live.com/'
+                        target="_blank"
+                        title="tsieyy@outlook.com"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-mail" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z" /><path d="M3 7l9 6l9 -6" /></svg>
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section"> 
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#jetson-nano-自带python36与yolov5冲突">jetson nano 自带python3.6与yolov5冲突</a></li>
+    <li><a href="#解决方案">解决方案</a>
+      <ol>
+        <li><a href="#包管理工具">包管理工具</a></li>
+        <li><a href="#deepstream的适配性">deepstream的适配性</a></li>
+      </ol>
+    </li>
+    <li><a href="#第二种解决办法的后续流程">第二种解决办法的后续流程</a>
+      <ol>
+        <li><a href="#tensorrt">tensorrt</a>
+          <ol>
+            <li><a href="#低版本python直接链接">低版本python：直接链接</a></li>
+            <li><a href="#高版本pythontensorrt-python-bindings">高版本python：TensorRT Python Bindings</a></li>
+            <li><a href="#操作过程简述">操作过程简述</a></li>
+            <li><a href="#操作过程中的问题合集">操作过程中的问题合集</a></li>
+          </ol>
+        </li>
+        <li><a href="#完成">完成</a></li>
+      </ol>
+    </li>
+  </ol>
+
+  <ol>
+    <li><a href="#opencv编译过程">opencv编译过程</a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#pt---onnx">.pt -&gt; .onnx</a></li>
+    <li><a href="#onnx---trt">.onnx -&gt; .trt</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/academic-competition/" >
+                Academic-Competition
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/jetson-nano-tips/">Jetson Nano tips</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            jetson nano板tensorrt等环境配置
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Jan 27, 2024</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    2 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h1 id="jetson-nano">jetson nano</h1>
+<p>Jetpack: 4.6.1</p>
+<ul>
+<li>Cuda: 10.2.300</li>
+<li>cuDNN: 8.2.1.32</li>
+<li>TensorRT: 8.2.1.8</li>
+<li>OpenCV: 4.1.1</li>
+</ul>
+<p>Python: 3.6.9</p>
+<h1 id="python版本和yolov5">python版本和yolov5</h1>
+<h2 id="jetson-nano-自带python36与yolov5冲突">jetson nano 自带python3.6与yolov5冲突</h2>
+<p>yolov5 需要满足python版本<strong>大于3.7</strong>，而jetson nano的官方镜像自带版本为 <code>python3.6.9</code>，自带的tensorrt也仅仅包含在3.6中，且网上大部分教程都是围绕3.6展开。所以python和yolov5之间在nano中有些冲突。</p>
+<h2 id="解决方案">解决方案</h2>
+<p>以下是我可以想到的两种解决方案：</p>
+<ol>
+<li>
+<p>继续使用 jetson nano 中自带的 python3.6.9。此类方法比较常见，网上大部分教程也是采用次方法。主要思想是在clone yolov5代码时选择早期版本，可以适配python3.6的。<em>这种解决办法网上教程参差不齐还是需要多辨认一下。</em></p>
+</li>
+<li>
+<p>更换更高版本的python。在这里我使用的是这种方法，理论上来讲可以最高可以换到python3.9，我这里只是为了能跑通yolov5就选择了 <code>python3.7.12</code> 。下面部分内容主要讲解此配置方案需要注意的点。</p>
+</li>
+</ol>
+<h3 id="包管理工具">包管理工具</h3>
+<p>环境管理工具方面选择miniforge3，因为nano架构为aarch64，不同于我们PC的amd64，所以没办法使用anaconda。具体安装方法google搜一下就好，这个简单。</p>
+<h3 id="deepstream的适配性">deepstream的适配性</h3>
+<p><em>如果不知道deepstream是什么东西，那就说明还没有这个需求，可以直接跳过这块，需要的时候再看。</em></p>
+<p>如果要用到deepstream，其版本要求严格对应cuda版本、jetpack版本等，需要在nvidia官网看好，它也和python版本有严格的对应关系。我在这里使用的是<code>Deepstream-6.0</code>，理论与它适配的python版本是3.6.9，我使用python3.7也可以正常运行。</p>
+<p>deepstream的安装教程网络上良莠不齐，注意分辨。
+这里给出一个比较好的<a class="link" href="https://github.com/ultralytics/yolov5/issues/9627"  target="_blank" rel="noopener"
+    >教程</a>，里面既有对yolov5的安装，也有对deepstream的安装。但还是有刚刚那个python版本问题，其使用的python3.69，所以还是以上<strong>解决方法</strong>中的两个二选一。剩下部分就按照教程走就好。</p>
+<h2 id="第二种解决办法的后续流程">第二种解决办法的后续流程</h2>
+<h3 id="tensorrt">tensorrt</h3>
+<p>tensorrt是一个需要着重说明的点。jetson nano的系统环境其实封装的很好了，其<strong>系统环境中的python3.6.9自带有tensorrt</strong>。可以直接通过 <code>import tensorrt</code> 来使用。</p>
+<p>但如果要使用高版本的python，就没有tensorrt了，需要自己去编译。</p>
+<blockquote>
+<p>为什么不能通过pip安装？</p>
+</blockquote>
+<p>还是上面提到的，jetson nano是aarch64架构，pypi官网上无论是tensorrt包还是nvidia-tensorrt包，它的下载栏里面很明显可以看到都是x86架构的，没有办法直接pip下载。</p>
+<p>如果留心就会发现tensorrt的python包存在路径：</p>
+<p><em>/usr/lib/python3.6/dist-packages/tensorrt</em></p>
+<p>包含以下内容：</p>
+<ul>
+<li>__ init __.py</li>
+<li>tensorrt.so</li>
+</ul>
+<p>内容极少，后者就是关键部分，一个编译后的程序函数库文件，我们现在需要做的就围绕它进行。</p>
+<h4 id="低版本python直接链接">低版本python：直接链接</h4>
+<p>如果你创建了python3.6的虚拟环境，发现tensorrt在你的虚拟环境下用不了，就可以简单一点，直接用<code>ln -s</code>把这个tensorrt包链接到你的<strong>虚拟环境的site-packages</strong>中。</p>
+<h4 id="高版本pythontensorrt-python-bindings">高版本python：TensorRT Python Bindings</h4>
+<p>如果是高版本python，例如我这里使用的python3.7.12版本就不能直接链接。这里就要使用到<strong>TensorRT Python Bindings</strong>工具，来编译生成对应版本的<strong>tensorrt.so</strong>。</p>
+<p>这里给出两个步骤教程，这两个教程对比着看，就大致学会安装方法。</p>
+<ul>
+<li><a class="link" href="https://forums.developer.nvidia.com/t/tensorrt-on-jetson-with-python-3-9/196131"  target="_blank" rel="noopener"
+    >Tensorrt on Jetson with python 3.9</a></li>
+<li><a class="link" href="https://github.com/NVIDIA/TensorRT/tree/release/8.2/python"  target="_blank" rel="noopener"
+    >官方教程</a></li>
+</ul>
+<p><strong>注意点：</strong></p>
+<ul>
+<li>看好版本，你要使用的python版本，下载好对应的python版本源码。</li>
+<li>TensorRT工具的版本，与我们对应的是<strong>release/8.2</strong>分支。</li>
+<li>cmake版本要高于3.13，系统自带的不满足。</li>
+</ul>
+<h4 id="操作过程简述">操作过程简述</h4>
+<p>研究好了上面给的两个教程之后，理论上讲你的目录中需要并列存在以下三个目录：</p>
+<ol>
+<li>TensorRT：github上克隆的官方工具包</li>
+<li>pybind11：编译过程中需要使用的子模块</li>
+<li>python3.x.x：准备好的python include源码，需要加入<strong>pyconfig.h</strong></li>
+</ol>
+<p>第二个我感觉不需要，因为clone了TensorRT之后，使用<code>git submodule update --init --recursive</code>就会把pybind11一同clone下来。不过放着也无所谓。</p>
+<p>有一个<strong>教程中没有提到的很重要的一个环节</strong>需要做。需要进入：</p>
+<p><em>TensorRT/parsers/onnx/third_party/onnx/third_party/pybind11</em></p>
+<p>目录下（如果没有该目录就是没有更新子模块），输入<code>git checkout -b v2.6</code>，降低pybind11版本，最新版本有bug。</p>
+<p>完成后把参数调整成你需要的之后，执行<strong>build.sh</strong>大概率就是对的，正常情况下会长时间卡在：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[ 16%] Building CXX object CMakeFiles/tensorrt.dir/src/infer/pyGraph.cpp.o
+</span></span><span class="line"><span class="cl">[ 16%] Building CXX object CMakeFiles/tensorrt.dir/src/infer/pyPlugin.cpp.o
+</span></span><span class="line"><span class="cl">[ 25%] Building CXX object CMakeFiles/tensorrt.dir/src/infer/pyAlgorithmSelector.cpp.o
+</span></span><span class="line"><span class="cl">[ 33%] Building CXX object CMakeFiles/tensorrt.dir/src/infer/pyInt8.cpp.o
+</span></span><span class="line"><span class="cl">[ 41%] Building CXX object CMakeFiles/tensorrt.dir/src/infer/pyFoundationalTypes.cpp.o
+</span></span><span class="line"><span class="cl">[ 50%] Building CXX object CMakeFiles/tensorrt.dir/src/infer/pyCore.cpp.o
+</span></span><span class="line"><span class="cl">[ 58%] Building CXX object CMakeFiles/tensorrt.dir/src/parsers/pyCaffe.cpp.o
+</span></span><span class="line"><span class="cl">[ 66%] Building CXX object CMakeFiles/tensorrt.dir/src/parsers/pyUff.cpp.o
+</span></span><span class="line"><span class="cl">[ 75%] Building CXX object CMakeFiles/tensorrt.dir/src/utils.cpp.o
+</span></span><span class="line"><span class="cl">[ 91%] Building CXX object CMakeFiles/tensorrt.dir/src/parsers/pyOnnx.cpp.o
+</span></span><span class="line"><span class="cl">[ 91%] Building CXX object CMakeFiles/tensorrt.dir/src/pyTensorRT.cpp.o
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>因为这个需要编译一会，如果很快就结束了，大概率是寄了，重新再检查错误吧。</p>
+<h4 id="操作过程中的问题合集">操作过程中的问题合集</h4>
+<blockquote>
+<p>报错： c++: internal compiler error: Killed (program cc1plus)</p>
+</blockquote>
+<p>编译过程中内存爆了，看<a class="link" href="https://aijishu.com/a/1060000000221025"  target="_blank" rel="noopener"
+    >这篇文档</a>的nano设置部分。</p>
+<blockquote>
+<p>报错： &hellip; SetuptoolsDeprecationWarning: setup.py install is deprecated. &hellip;</p>
+</blockquote>
+<p>python的setuptools版本太高，降版本：<code>pip install setuptools==58.2.0</code></p>
+<blockquote>
+<p>报错： &ldquo;No module named &rsquo;tensorrt.tensorrt&rsquo;&rdquo; for generated wheel file</p>
+</blockquote>
+<p>遇到这种情况时候，整个流程好像没什么错，但是会发现安装完成之后，tensorrt包里面没有最重要的<strong>tensorrt.so</strong>文件。遇到这种情况就降<strong>pybind11</strong>版本就好。
+<a class="link" href="https://github.com/NVIDIA/TensorRT/issues/2288"  target="_blank" rel="noopener"
+    >issue链接</a></p>
+<h3 id="完成">完成</h3>
+<p>完成上述操作后，带有tensorrt的 python3.7就整好了，可以正常用了，另外还需要装一些 pycuda 就很好装了，去pypi官网查看对应python的版本就好，别装错了</p>
+<h1 id="带有gstream的opencv">带有gstream的opencv</h1>
+<p>原nano板上预装了OpenCV，若直接使用<code>nvgstcapture</code>指令可以打开摄像头代表摄像头连接没问题。</p>
+<p>现在我们由于更换了python版本，若直接通过pip安装就没办法使用gstream，就会导致打不开CSI摄像头，所以我们需要重新编译适用于python3.7.12的opencv。</p>
+<h2 id="opencv编译过程">opencv编译过程</h2>
+<p>具体安装过程可以参照此<a class="link" href="https://www.bilibili.com/read/cv17612080/"  target="_blank" rel="noopener"
+    >博客</a>来完成。</p>
+<p>opencv版本我这里选择了4.5.5，此版本目前适用于我们当前环境。</p>
+<p>cmake那步具体指令可以根据我下面给出的来适当修改：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local -D OPENCV_GENERATE_PKGCONFIG=ON -D BUILD_EXAMPLES=OFF -D INSTALL_PYTHON_EXAMPLES=OFF -D INSTALL_C_EXAMPLES=OFF -D PYTHON_EXECUTABLE=$(which python2) -D BUILD_opencv_python2=OFF -D PYTHON3_EXECUTABLE=/home/bad/miniforge3/envs/yolov5/bin/python3.7m -D WITH_GSTREAMER=ON -D PYTHON3_INCLUDE_DIR=/home/bad/miniforge3/envs/yolov5/include/python3.7m -D PYTHON3_PACKAGES_PATH= /home/bad/miniforge3/envs/yolov5/lib/python3.7/site-packages -D PYTHON3_LIBRARY=/home/bad/miniforge3/envs/yolov5/lib/libpython3.7m.so -D PYTHON3_NUMPY_INCLUDE_DIRS=/home/bad/miniforge3/envs/yolov5/lib/python3.7/site-packages/numpy/core/include -D PYTHON_DEFAULT_EXECUTABLE=/home/bad/miniforge3/envs/yolov5/bin/python3.7m ..
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>最好根据上面给出的cmake指令来进行cmake，不然会make失败</strong></p>
+<p><em>建议在make的时候使用 -j4， 这样会快一些，当make到92%的时候使用 -j1，避免卡死</em></p>
+<p>编译完成后会在根目录生成一个cv目录，此时只需要把cv目录的二进制文件移动到conda中的python3.7环境中即可。完成以上就可以在当前的python环境中使用带gstream的opencv。</p>
+<h1 id="pt---onnx---trt">.pt -&gt; .onnx -&gt; .trt</h1>
+<p>在nano板上使用直接使用pytorch来进行推理的话处理速度会很慢，会导致视频帧率变低。所以在nano板等嵌入式环境中部署深度学习时最好使用tensorrt推理的形式进行，这也是上文讲解tensorrt编译的目的，可以加快一点处理速度。</p>
+<p>使用tensorrt推理需要把原pt文件转换为推理引擎文件，通常以 <em>.engine</em>或者 <em>.trt</em>为主，这两者貌似是一个东西，区别不大，具体有什么区别还需要再研究研究。</p>
+<p>从权重文件转换为引擎文件的方式有多种，这里列举主要的三个转换入口：</p>
+<ul>
+<li>TF-TRT，要求是 TensorFlow 模型</li>
+<li>ONNX 模型格式</li>
+<li>使用 TensorRT API 手动把模型搭起来，然后把参数加载进去</li>
+</ul>
+<p>第三种需要使用tensorrt api手动编写网络，比较麻烦，开源项目<a class="link" href="https://github.com/wang-xinyu/tensorrtx"  target="_blank" rel="noopener"
+    >Tensorrtx</a>就使用这种方法来获得.pt文件，但如果网络结构出现问题，那就需要修改此网络结构，极其麻烦。有需要就用一下上述开源项目中的一些模型就好，在以上模型中进行修改。</p>
+<p>在本文中使用第二种方法来获得引擎文件，以下是具体流程。</p>
+<h2 id="pt---onnx">.pt -&gt; .onnx</h2>
+<p>这步的转化晚上教程很多，可以参考以下我找的，<a class="link" href="https://github.com/tsieyy/UNet-dataset"  target="_blank" rel="noopener"
+    >U-Net仓库</a>，Main文件夹中的**_04pt2onnx.py**，此代码亲测可用。</p>
+<h2 id="onnx---trt">.onnx -&gt; .trt</h2>
+<p>该步骤麻烦一点，需要源码编译<strong>onnx-tensorrt</strong>，具体步骤可以查看该<a class="link" href="https://blog.csdn.net/ll0629/article/details/125082759?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522168205015716800226573759%2522%252C%2522scm%2522%253A%252220140713.130102334..%2522%257D&amp;request_id=168205015716800226573759&amp;biz_id=0&amp;utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduend~default-1-125082759-null-null.142%5ev86%5einsert_down28,239%5ev2%5einsert_chatgpt&amp;utm_term=unet%20tensorrt&amp;spm=1018.2226.3001.4187"  target="_blank" rel="noopener"
+    >博客</a>。</p>
+<blockquote>
+<p>报错： 缺少 &lt;TensorrtRuntimeAPI.h&gt; 文件（我不太确定是不是叫这个名字了，反正是一个差不多的名字）</p>
+</blockquote>
+<p>若出现上述错误，需要在项目文件的CmakeLists.txt文件中添加这个头文件（具体流程百度搜一下，貌似是叫一个 <em>include_directories</em> 的指令，记不清了），该头文件的具体位置可以使用：<code>sudo find / -name TensorrtRuntimeAPI(按实际情况做修改).h</code> 这条指令来对根目录进行查找，一般情况下就只能找到一个。然后把包含这个头文件的include文件夹放在cmake里边，删掉build文件夹里面的东西重新cmake。cmake没有类似于clean的指令，所以务必要删掉重新来。</p>
+<p><strong>注意</strong>：如果cmake里面有需要对python目录进行修改的就改成我们的conda环境。此步骤记不太清了主要是。</p>
+<p>安装完成之后就可以使用下面的指令来进行转换了，如果有报错大概率.onnx文件就有问题：</p>
+<p><code>onnx2trt best_unet.onnx -o best_unet.trt</code></p>
+<p>以上步骤做完之后修改编写业务逻辑的代码就可以使用.trt文件来进行推理了。</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/jetson-nano/">Jetson Nano</a>
+        
+            <a href="/tags/nvidia/">Nvidia</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2024 Github:null-less. All rights reserved.
+    </section>
+    
+    
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
