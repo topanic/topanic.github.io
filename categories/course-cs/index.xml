@@ -2,10 +2,10 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Course-CS on topanic&#39;s 🫡</title>
-        <link>https://example.com/categories/course-cs/</link>
+        <link>https://topanic.site/categories/course-cs/</link>
         <description>Recent content in Course-CS on topanic&#39;s 🫡</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
-        <copyright>Github:topanic. All rights reserved.</copyright><atom:link href="https://example.com/categories/course-cs/index.xml" rel="self" type="application/rss+xml" />
+        <copyright>Github:topanic. All rights reserved.</copyright><atom:link href="https://topanic.site/categories/course-cs/index.xml" rel="self" type="application/rss+xml" />
     </channel>
 </rss>

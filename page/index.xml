@@ -2,43 +2,43 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Pages on topanic&#39;s 🫡</title>
-        <link>https://example.com/page/</link>
+        <link>https://topanic.site/page/</link>
         <description>Recent content in Pages on topanic&#39;s 🫡</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
         <copyright>Github:topanic. All rights reserved.</copyright>
-        <lastBuildDate>Tue, 28 May 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://example.com/page/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 28 May 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://topanic.site/page/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Archives</title>
-        <link>https://example.com/archives/</link>
+        <link>https://topanic.site/archives/</link>
         <pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate>
         
-        <guid>https://example.com/archives/</guid>
+        <guid>https://topanic.site/archives/</guid>
         <description></description>
         </item>
         <item>
         <title>About</title>
-        <link>https://example.com/about/</link>
+        <link>https://topanic.site/about/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
-        <guid>https://example.com/about/</guid>
+        <guid>https://topanic.site/about/</guid>
         <description>&lt;h1 id=&#34;null-void-nil-none-and-nothing&#34;&gt;Null, Void, Nil, None and Nothing&amp;hellip;&lt;/h1&gt;
 </description>
         </item>
         <item>
         <title>Links</title>
-        <link>https://example.com/links/</link>
+        <link>https://topanic.site/links/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
-        <guid>https://example.com/links/</guid>
+        <guid>https://topanic.site/links/</guid>
         <description>&lt;p&gt;If you want to join the friend link, you can contact me through the email on the left. kiss kiss~&lt;/p&gt;
 </description>
         </item>
         <item>
         <title>Search</title>
-        <link>https://example.com/search/</link>
+        <link>https://topanic.site/search/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
-        <guid>https://example.com/search/</guid>
+        <guid>https://topanic.site/search/</guid>
         <description></description>
         </item>
         

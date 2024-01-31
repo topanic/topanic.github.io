@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Jetson Nano on topanic&#39;s 🫡</title>
-        <link>https://example.com/tags/jetson-nano/</link>
+        <link>https://topanic.site/tags/jetson-nano/</link>
         <description>Recent content in Jetson Nano on topanic&#39;s 🫡</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
         <copyright>Github:topanic. All rights reserved.</copyright>
-        <lastBuildDate>Sat, 27 Jan 2024 23:58:50 +0800</lastBuildDate><atom:link href="https://example.com/tags/jetson-nano/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sat, 27 Jan 2024 23:58:50 +0800</lastBuildDate><atom:link href="https://topanic.site/tags/jetson-nano/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Jetson Nano tips</title>
-        <link>https://example.com/p/jetson-nano-tips/</link>
+        <link>https://topanic.site/p/jetson-nano-tips/</link>
         <pubDate>Sat, 27 Jan 2024 23:58:50 +0800</pubDate>
         
-        <guid>https://example.com/p/jetson-nano-tips/</guid>
+        <guid>https://topanic.site/p/jetson-nano-tips/</guid>
         <description>&lt;h1 id=&#34;jetson-nano&#34;&gt;jetson nano&lt;/h1&gt;
 &lt;p&gt;Jetpack: 4.6.1&lt;/p&gt;
 &lt;ul&gt;
