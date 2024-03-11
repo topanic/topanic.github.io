@@ -3,7 +3,19 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://topanic.site/</loc>
-    <lastmod>2024-01-27T23:58:50+08:00</lastmod>
+    <lastmod>2024-03-10T23:58:50+08:00</lastmod>
+  </url><url>
+    <loc>https://topanic.site/tags/jupyter/</loc>
+    <lastmod>2024-03-10T23:58:50+08:00</lastmod>
+  </url><url>
+    <loc>https://topanic.site/p/jupyterhub/</loc>
+    <lastmod>2024-03-10T23:58:50+08:00</lastmod>
+  </url><url>
+    <loc>https://topanic.site/post/</loc>
+    <lastmod>2024-03-10T23:58:50+08:00</lastmod>
+  </url><url>
+    <loc>https://topanic.site/tags/</loc>
+    <lastmod>2024-03-10T23:58:50+08:00</lastmod>
   </url><url>
     <loc>https://topanic.site/categories/academic-competition/</loc>
     <lastmod>2024-01-27T23:58:50+08:00</lastmod>
@@ -18,12 +30,6 @@
     <lastmod>2024-01-27T23:58:50+08:00</lastmod>
   </url><url>
     <loc>https://topanic.site/tags/nvidia/</loc>
-    <lastmod>2024-01-27T23:58:50+08:00</lastmod>
-  </url><url>
-    <loc>https://topanic.site/post/</loc>
-    <lastmod>2024-01-27T23:58:50+08:00</lastmod>
-  </url><url>
-    <loc>https://topanic.site/tags/</loc>
     <lastmod>2024-01-27T23:58:50+08:00</lastmod>
   </url><url>
     <loc>https://topanic.site/archives/</loc>
